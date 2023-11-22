@@ -1,6 +1,7 @@
  package com.vitallog.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,10 +27,11 @@ public class MyPageController {
 	public UserlogDto getTodayTotalLogs(@PathVariable String userid, String date) {
 		return mypageService.getTodayTotalLogs(userid, date);
 	}
+
 	
-	// 해당 유저의 모든 로그 데이터를 최신순으로 
+	// 해당 유저의 모든 로그 데이터를 최신순으로
 	@GetMapping("/api/vitallog/mypage/{userid}/total") 
-	public List<UserlogDto> getUserLogs(@PathVariable String userid) {
+	public Map<String, List<UserlogDto>> getUserLogs(@PathVariable String userid) {
 		return mypageService.getUserLogs(userid);
 	}
 	
@@ -53,7 +55,7 @@ public class MyPageController {
 	
 	// 특정 기간 내의 로그 데이터
 	@GetMapping("/api/vitallog/mypage/{userid}/periods")
-	public List<UserlogDto> getPeriodsLogs(@PathVariable String userid, String from, String to){
+	public Map<String, List<UserlogDto>> getPeriodsLogs(@PathVariable String userid, String from, String to){
 		return mypageService.getPeriodsLogs(userid, from, to);
 	}
 	
