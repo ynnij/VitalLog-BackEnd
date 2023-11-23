@@ -36,4 +36,8 @@ public class Reply {
 	@Temporal(TemporalType.DATE)
 	private Date createDate;
 	private int boardId;
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	private Date updateDate;
 }
