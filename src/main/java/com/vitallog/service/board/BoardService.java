@@ -1,6 +1,8 @@
 package com.vitallog.service.board;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +30,7 @@ public class BoardService {
 	@Transactional
 	public ResponseEntity<?> createBoard(Board board){
 		try{
+			board.setUpdateDate(board.getCreateDate()); //update 날짜는 기본으로 생성날짜와 동일
 			boardRepo.save(board);
 		} catch(Exception e) {
 			return ResponseEntity.badRequest().build();
@@ -48,14 +51,20 @@ public class BoardService {
 	@Transactional
 	public ResponseEntity<?> updateBoard(int id, Board board){
 		Board findBoard = boardRepo.findById(id).get();
+		
 		findBoard.setTitle(board.getTitle());
 		findBoard.setContents(board.getContents());
+		findBoard.setUpdateDate(new Date());
+		
 		boardRepo.save(findBoard);
 		return ResponseEntity.ok().build();
 	}
 	
 	@Transactional
 	public ResponseEntity<?> deleteBoard(int id){
+		Optional<Board> opt = boardRepo.findById(id);
+		if(!opt.isPresent())
+			return ResponseEntity.badRequest().build();
 		boardRepo.deleteById(id);
 		return ResponseEntity.ok().build(); 
 	}

@@ -21,7 +21,7 @@ public class VitalLogMemberService {
 	PasswordEncoder encoder = new BCryptPasswordEncoder();
 	
     @Transactional
-	public ResponseEntity<?> memberRegister(@RequestBody Member member) {
+	public ResponseEntity<?> memberRegister(Member member) {
 		if(memberRepository.findById(member.getId()).isPresent()) // 데이터베이스에 이미 존재하는 아이디인 경우
 			return ResponseEntity.badRequest().body("이미 존재하는 아이디입니다.");
 		

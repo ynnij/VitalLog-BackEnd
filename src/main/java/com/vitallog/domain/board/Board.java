@@ -32,13 +32,18 @@ public class Board {
  
  private String title;
  
+ @ColumnDefault("0")
+ private int visitcount;
+ 
  @DateTimeFormat(pattern="yyyy-MM-dd")
  @Temporal(TemporalType.DATE)
  private Date createDate;
  private String contents;
  private String writer;
  
- @ColumnDefault("0")
- private int visitcount;
+ 
+ @DateTimeFormat(pattern="yyyy-MM-dd")
+ @Temporal(TemporalType.DATE)
+ private Date updateDate;
 
 }
