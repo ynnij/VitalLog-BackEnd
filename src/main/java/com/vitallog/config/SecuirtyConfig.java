@@ -41,9 +41,9 @@ public class SecuirtyConfig {
 		http.csrf(csrf -> csrf.disable());
 
 		http.authorizeHttpRequests(auth -> auth
-				.requestMatchers(new AntPathRequestMatcher("/user/**")).authenticated() 
-				.requestMatchers(new AntPathRequestMatcher("/community/**")).authenticated() //커뮤니티 회원만 접근가능
-				.requestMatchers(new AntPathRequestMatcher("/mypage/**")).authenticated() //mypage는 회원만 접근가능
+				.requestMatchers(new AntPathRequestMatcher("/api/vitallog/user/**")).authenticated() 
+				.requestMatchers(new AntPathRequestMatcher("/api/vitallog/communityy/**")).authenticated() //커뮤니티 회원만 접근가능
+				.requestMatchers(new AntPathRequestMatcher("/api/vitallog/mypage/**")).authenticated() //mypage는 회원만 접근가능
 				.anyRequest().permitAll()); 
 
 		http.formLogin(frmLogin -> frmLogin.disable());
