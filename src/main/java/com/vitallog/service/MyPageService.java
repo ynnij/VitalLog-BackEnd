@@ -17,6 +17,7 @@ import com.vitallog.domain.Userlog;
 import com.vitallog.dto.UserlogDto;
 import com.vitallog.persistence.ExerciseRepository;
 import com.vitallog.persistence.LogsViewRepository;
+import com.vitallog.persistence.MemberRepository;
 import com.vitallog.persistence.UserlogRepository;
 
 import jakarta.transaction.Transactional;
@@ -29,6 +30,8 @@ public class MyPageService {
 	private ExerciseRepository exerciseRepository;
 	@Autowired
 	private LogsViewRepository logsviewRepository;
+	@Autowired
+	private MemberRepository memberRepository;
 	
 	private List<UserlogDto> objectToDto(List<Object[]> list){
 		List<UserlogDto> dtolist = new ArrayList<>();
@@ -68,10 +71,11 @@ public class MyPageService {
 	// 오늘의 종합 운동량, 칼로리
 	public UserlogDto getTodayTotalLogs(String userid, String date) {
 		List<Object[]> list = logsviewRepository.getTodayTotalLogs(userid, date);
+		String username = memberRepository.findById(userid).get().getName();
 		UserlogDto dto = new UserlogDto();
 		for(Object[]o: list) {
-			dto.setName((String)o[0]);
-			dto.setTotalKcal((double)o[1]);
+			dto.setName(username);
+			dto.setTotalKcal((double)(o[1]==null ? 0.0 : o[1]));
 			dto.setTotalExerTime((BigDecimal)o[2]);
 			dto.setExerDate((Date)o[3]);
 		}
