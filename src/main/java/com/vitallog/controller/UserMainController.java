@@ -1,6 +1,7 @@
 package com.vitallog.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,8 @@ public class UserMainController {
 	
 	// 유저 메인페이지에서 보여주는 최근 3개 로그 가져오기
 	@GetMapping("/api/vitallog/user/{userid}")
-	public List<UserlogDto> getMainPageUserLogs(@PathVariable String userid) {
+	public Map<String, List<UserlogDto>> getMainPageUserLogs(@PathVariable String userid) {
+		
 		return usermainService.getMainPageUserLogs(userid);
 	}
 }
