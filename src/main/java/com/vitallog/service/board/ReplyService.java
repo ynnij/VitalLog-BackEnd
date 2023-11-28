@@ -16,39 +16,40 @@ import jakarta.transaction.Transactional;
 public class ReplyService {
 	@Autowired
 	private ReplyRepository replyRepo;
-	
+
 	public List<Reply> getReply(int boardId) {
 		return replyRepo.findByBoardId(boardId);
 	}
-	
+
 	@Transactional
-	public ResponseEntity<?> createReply(int postid, Reply reply) {
-		try {
-			reply.setBoardId(postid);
-			reply.setUpdateDate(reply.getCreateDate());
-			replyRepo.save(reply);
-		} catch(Exception e) {
-			return ResponseEntity.badRequest().build();
-		}
-	
-		return ResponseEntity.ok().build();
+	public List<Reply> createReply(int postid, Reply reply) {
+		reply.setBoardId(postid);
+		reply.setUpdateDate(reply.getCreateDate());
+		replyRepo.save(reply);
+		
+		List<Reply> replyList = replyRepo.findByBoardId(postid);
+		
+		return replyList;
+
 	}
-	
+
 	@Transactional
-	public ResponseEntity<?> deleteReply(String userid, int replyid) {
+	public List<Reply> deleteReply(String userid, int replyid) {
 		Reply reply = replyRepo.findById(replyid).get();
-		if(!reply.getWriter().equals(userid))
-			return ResponseEntity.badRequest().build();
+		int postid = reply.getBoardId();
 		replyRepo.deleteById(replyid);
-		return ResponseEntity.ok().build();
+		
+		List<Reply> replyList = replyRepo.findByBoardId(postid);
+		
+		return replyList;
 	}
-	
+
 	@Transactional
 	public ResponseEntity<?> updateReply(String userid, int replyid, String contents) {
 		Reply reply = replyRepo.findById(replyid).get();
-		if(!reply.getWriter().equals(userid))
+		if (!reply.getWriter().equals(userid))
 			return ResponseEntity.badRequest().build();
-		
+
 		reply.setContents(contents);
 		reply.setUpdateDate(new Date());
 		replyRepo.save(reply);

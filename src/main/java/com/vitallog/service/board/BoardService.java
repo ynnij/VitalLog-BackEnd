@@ -29,12 +29,10 @@ public class BoardService {
 	
 	@Transactional
 	public ResponseEntity<?> createBoard(Board board){
-		try{
+
 			board.setUpdateDate(board.getCreateDate()); //update 날짜는 기본으로 생성날짜와 동일
 			boardRepo.save(board);
-		} catch(Exception e) {
-			return ResponseEntity.badRequest().build();
-		}
+
 		return ResponseEntity.ok(null);
 	}
 	

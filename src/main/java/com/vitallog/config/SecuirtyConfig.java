@@ -42,7 +42,7 @@ public class SecuirtyConfig {
 
 		http.authorizeHttpRequests(auth -> auth
 				.requestMatchers(new AntPathRequestMatcher("/api/vitallog/user/**")).authenticated() 
-				.requestMatchers(new AntPathRequestMatcher("/api/vitallog/communityy/**")).authenticated() //커뮤니티 회원만 접근가능
+				.requestMatchers(new AntPathRequestMatcher("/api/vitallog/community/**")).authenticated() //커뮤니티 회원만 접근가능
 				.requestMatchers(new AntPathRequestMatcher("/api/vitallog/mypage/**")).authenticated() //mypage는 회원만 접근가능
 				.anyRequest().permitAll()); 
 

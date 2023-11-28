@@ -28,12 +28,12 @@ public class ReplyController {
 	}
 	
 	@PostMapping("/{postid}/comments")
-	public ResponseEntity<?> createReply(@PathVariable int postid, @RequestBody Reply reply){
+	public List<Reply> createReply(@PathVariable int postid, @RequestBody Reply reply){
 		return replyService.createReply(postid,reply);
 	}
 	
 	@DeleteMapping("/{userid}/comments/{replyid}")
-	public ResponseEntity<?> deleteReply(@PathVariable String userid, @PathVariable int replyid) {
+	public List<Reply> deleteReply(@PathVariable String userid, @PathVariable int replyid) {
 		return replyService.deleteReply(userid, replyid);
 	}
 	
