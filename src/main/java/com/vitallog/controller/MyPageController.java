@@ -62,7 +62,7 @@ public class MyPageController {
 	}
 	
 	//로그 삭제하기
-	@DeleteMapping("/api/vitallog/mypage/{logid}")
+	@DeleteMapping("/{logid}")
 	public ResponseEntity<?> deleteLog(@PathVariable int logid){
 		return mypageService.deleteLog(logid);
 	}

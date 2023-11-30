@@ -14,6 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.intercept.AuthorizationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
@@ -38,7 +39,6 @@ public class SecuirtyConfig {
 	
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.csrf(csrf -> csrf.disable());
 
 		http.authorizeHttpRequests(auth -> auth
 				.requestMatchers(new AntPathRequestMatcher("/api/vitallog/user/**")).authenticated() 
@@ -46,6 +46,9 @@ public class SecuirtyConfig {
 				.requestMatchers(new AntPathRequestMatcher("/api/vitallog/mypage/**")).authenticated() //mypage는 회원만 접근가능
 				.anyRequest().permitAll()); 
 
+		http.csrf(csrf -> csrf.disable());
+		http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
+		
 		http.formLogin(frmLogin -> frmLogin.disable());
 		http.httpBasic(basic -> basic.disable());
 
@@ -60,5 +63,19 @@ public class SecuirtyConfig {
 		return http.build();
 	}
 
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		CorsConfiguration config = new CorsConfiguration();
+		config.addAllowedOrigin("http://localhost:3000");
+		config.addAllowedMethod("*");
+		config.addAllowedHeader("*");
+		config.setAllowCredentials(true);
+		config.addExposedHeader(HttpHeaders.AUTHORIZATION);
+		config.setAllowCredentials(true);
+		
+		source.registerCorsConfiguration("/**", config);
+		return source;
+	}
 	
 }

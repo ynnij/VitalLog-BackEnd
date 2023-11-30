@@ -17,8 +17,7 @@ public interface LogsViewRepository extends JpaRepository<LogsView, Integer> {
 	
 	// 유저의 모든 로그 
 	@Query(value="select seq, exer_date, exer_time, kcal, member_name, exercise "
-			+ "from logs_view where memberid=%?1% "
-			+ "order by seq desc", nativeQuery = true)
+			+ "from logs_view where memberid=%?1% ", nativeQuery = true)
 	List<Object[]> getUserLogs(String userid);
 	// 모든 로그에서 합계
 	@Query(value="select exer_date, sum(exer_time), sum(kcal) "
