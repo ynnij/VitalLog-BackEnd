@@ -41,6 +41,7 @@ public class Board {
  private String contents;
  private String writer;
  
+ private String category;
  
  @DateTimeFormat(pattern="yyyy-MM-dd")
  @Temporal(TemporalType.DATE)
