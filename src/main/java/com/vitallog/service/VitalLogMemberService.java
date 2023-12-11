@@ -32,4 +32,10 @@ public class VitalLogMemberService {
 		
 		return ResponseEntity.ok("회원가입 완료");
 	}
+    
+	public ResponseEntity<?> checkId(String id){
+		if(memberRepository.findById(id).isPresent())
+			return ResponseEntity.badRequest().build();
+		return ResponseEntity.ok().build();
+	}
 }
