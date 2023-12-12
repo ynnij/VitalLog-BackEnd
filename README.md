@@ -1,13 +1,47 @@
 # Vital Log Backend
 
+> 사용자별 운동을 기록할 수 있고, 나이 ▪ 성별 등에 따라 운동을 추천 받을 수 있는 웹 사이트
+
 ## 개발환경
 
-개발기간 : 23.11.14 ~ 
+개발기간 : 23.11.14 ~ 23.12.12
+
+|FE|BE|
+|:---:|:---:|
+|박민호|김혜진|
+|[FE 저장소](https://github.com/777Mino777/VitallogFrontEnd)|[BE 저장소](https://github.com/ynnij/VitalLog-BackEnd)|
 
 - IDE : Spring Tool Suite 4
 - JAVA : jdk 17.0.8
 - SpringBoot : 3.1.5
-- MySQL 
+- SpringSecurity 6.1.5
+- MySQL 8.0.34
+
+## 화면
+
+### 메인페이지
+
+<p align ="center">
+    <img src="https://github.com/ynnij/VitalLog-BackEnd/assets/87576974/3c21aa12-c6d8-40e5-bbcc-258be318041a">
+</p>
+
+### 추천운동페이지
+
+<p align ="center">
+    <img src="https://github.com/ynnij/VitalLog-BackEnd/assets/87576974/445792e0-1e0c-459b-afd7-f2e01a42c378">
+</p>
+
+### 마이페이지
+
+<p align ="center">
+    <img src="https://github.com/ynnij/VitalLog-BackEnd/assets/87576974/4be56f1c-273d-4ae2-9480-7ccd8cdd55ca">
+</p>
+
+#### 커뮤니티
+
+<p align ="center">
+    <img src="https://github.com/ynnij/VitalLog-BackEnd/assets/87576974/bcbcffd1-9110-40c8-8ebd-b478093c9a79">
+</p>
 
 ## 주요기능
 
@@ -21,13 +55,37 @@
 
 ## ERD 및 REST API 설계
 
-1. ERD
+### 1. ERD
+   
+<p align ="center">
+    <img src="https://github.com/ynnij/VitalLog-BackEnd/assets/87576974/ab2c62f0-b4bb-4fd9-a0d6-b0ba9a121b2f">
+</p>
 
+### 2. REST API
 
-2. REST API
+로그인, 회원가입, 메인페이지, 추천운동
 
+<p align ="center">
+    <img src="https://github.com/ynnij/VitalLog-BackEnd/assets/87576974/ba1b2c3a-90f6-4b3e-bad2-827b37372762">
+</p>
+
+마이페이지
+
+<p align ="center">
+    <img src="https://github.com/ynnij/VitalLog-BackEnd/assets/87576974/9694efa2-8217-4410-ae50-06ed1992800c">
+</p>
+
+커뮤니티
+
+<p align ="center">
+    <img src="https://github.com/ynnij/VitalLog-BackEnd/assets/87576974/b7524cf9-80e3-4e8f-b826-43ab560bdbf5">
+</p>
 
 ## 개발 과정
+
+|BE 저장소|마이페이지|recoil 및 디자인|
+|:---:|:---:|:---:|
+|[<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">](https://github.com/ynnij/VitalLog-BackEnd)|[<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">](https://github.com/ynnij/VitalLog-FrontEnd)|[<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">](https://github.com/ynnij/VitallogFrontEnd)|
 
 **23.11.14(화) ~ 23.11.15(수)** 
 - 주제 선정 및 화면 설계
